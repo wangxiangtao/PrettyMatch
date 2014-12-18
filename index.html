@@ -97,9 +97,7 @@ It has sophisticated comparators that perform approximate string matching, measu
 <p>To train a comprehensive model by all the matrics , you just need to run :</p>
 
 <div class="highlight highlight-scala"><pre><span class="pl-k">val</span> <span class="pl-en">PrettyMatch</span>  <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">PrettyMatch</span> 
-<span class="pl-en">PrettyMatch</span>.run(trainingdata,<span class="pl-c1">true</span>)  <span class="pl-c">// The format of trainingdata is a list of tuple which has 3 elements                  </span>
-                                    <span class="pl-c">// A tuple contain two strings and one boolean value to indicate they match or not)</span>
-                                    <span class="pl-c">// The second parameter indicate use supervised cleaner or not</span></pre></div>
+<span class="pl-en">PrettyMatch</span>.run(trainingdata,<span class="pl-c1">true</span>) 
 
 <p>It will generate trained model for comparison and print Confusion Matric by 10 cross validation.</p>
 
