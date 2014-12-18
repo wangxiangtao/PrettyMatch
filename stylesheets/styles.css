@@ -21,6 +21,13 @@ body {
   color: white;
 }
 
+.shadow {
+  background: -moz-linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5) 100%);
+  height: 50px;
+  margin-top: 0;
+  padding: 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color:#222;
   margin:0 0 20px;
