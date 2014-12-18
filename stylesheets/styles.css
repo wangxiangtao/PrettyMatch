@@ -7,6 +7,14 @@ body {
   color:#6C6C5A;
   font-weight:300;
 }
+#nav {
+  background: #222;
+  background-size: cover;
+  color: white;
+  line-height: 36px;
+  padding: 0 30px 0 30px;
+  margin-bottom: 0;
+}
 
 h1, h2, h3, h4, h5, h6 {
   color:#222;
