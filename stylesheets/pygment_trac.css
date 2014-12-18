@@ -143,7 +143,6 @@
 .highlight .pl-ml,
 .highlight .pl-pdc1,
 .highlight .pl-pds,
-.highlight .pl-s1,
 .highlight .pl-scp,
 .highlight .pl-sol {
   color: #1599EA;
@@ -156,7 +155,9 @@
 .highlight .pl-vi {
   color: #0BD0D8;
 }
-
+.highlight .pl-s1{
+  color: #F76308;
+}
 .highlight .pl-mb,
 .highlight .pl-pdb {
   color: #df5000;
