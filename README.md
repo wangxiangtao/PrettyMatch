@@ -18,6 +18,7 @@ Useful for approximate string matching and measurement of string distance. All m
 * __[Soundex](http://en.wikipedia.org/wiki/Soundex)__ 
 * __[Deep Learning-Word2Vec](https://code.google.com/p/word2vec/)__
 * __[MinHash](http://en.wikipedia.org/wiki/MinHash)__ 
+
 ```scala
 StringMetric.compareWithJaccard(1)("google crayon", "goodbye crayon")       //0.6875
 StringMetric.compareWithJaro("google crayon", "goodbye crayon")             //0.7863
