@@ -43,7 +43,7 @@ Advanced algorithms can automatically clean and match strings without any custom
 
 The pipeline are shown as below
 
-![alt tag](https://bytebucket.org/crayondata/prettymatch/raw/e8b667661e80462f5a51ec62edb0688401c91236/pipe.png)
+![alt tag](https://raw.githubusercontent.com/wangxiangtao/prettymatch/master/pipe.png)
 
 You can easily add other cleaners by extend Clearner class and implement the clean() method 
 
