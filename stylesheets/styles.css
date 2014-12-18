@@ -2,7 +2,7 @@
 
 body {
   background-image: url('https://raw.githubusercontent.com/wangxiangtao/PrettyMatch/master/background.jpg');
-  padding:50px;
+  margin:0;
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#6C6C5A;
   font-weight:300;
