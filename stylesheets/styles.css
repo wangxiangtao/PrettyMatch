@@ -2,6 +2,11 @@
 
 body {
   background-image: url('https://raw.githubusercontent.com/wangxiangtao/PrettyMatch/master/background.jpg');
+         no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
   margin:0;
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#6C6C5A;
