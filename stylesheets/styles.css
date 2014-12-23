@@ -9,7 +9,7 @@ body {
         background-size: cover;
   margin:0;
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color:#6C6C5A;
+  color:#513C54;
   font-weight:300;
 }
 
@@ -49,8 +49,8 @@ h1, h2, h3 {
 
 h1 {
   font-size:46px;
-  font-family:Ovo;
-  font-weight:cursive;
+  font-family:cursive;
+  font-weight:bold;
 }
 
 h2 {
