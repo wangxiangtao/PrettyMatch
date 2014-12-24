@@ -1,4 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+@font-face {
+  font-family: 'Ovo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ovo'), url(http://fonts.gstatic.com/s/ovo/v7/WqVRExPBh0NGpNgcgzBACQ.woff) format('woff');
+}
 
 body {
   background-image: url('https://raw.githubusercontent.com/wangxiangtao/PrettyMatch/master/background.jpg');
