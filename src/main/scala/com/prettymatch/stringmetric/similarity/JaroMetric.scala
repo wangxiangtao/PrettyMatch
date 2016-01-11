@@ -3,10 +3,6 @@ package com.prettymatch.stringmetric.similarity
 import com.prettymatch.stringmetric._
 import scala.collection.mutable.{ArrayBuffer, HashSet}
 
-/**
- * An implementation of the Jaro metric. One differing detail in this implementation is that if a character is matched
- * in string2, it cannot be matched upon again. This results in a more penalized distance in these scenarios.
- */
 case object JaroMetric extends StringMetric[Double] {
     def compare(a: Array[Char], b: Array[Char]): Option[Double] =
 		if (a.length == 0 || b.length == 0) None
@@ -14,11 +10,9 @@ case object JaroMetric extends StringMetric[Double] {
 		else {
 			val mt = `match`(a, b)
 			val ms = scoreMatches(mt._1, mt._2)
-
 			if (ms == 0) Some(0d)
 			else {
 				val ts = scoreTranspositions(mt._1, mt._2)
-
 				Some(((ms.toDouble / a.length) + (ms.toDouble / b.length) + ((ms.toDouble - ts) / ms)) / 3)
 			}
 		}

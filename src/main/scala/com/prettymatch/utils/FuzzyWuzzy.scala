@@ -54,14 +54,6 @@ object FuzzyWuzzy {
 		
 		val sortedIntersection = Sets.newTreeSet(intersection);
 
-//		if (debug) {
-//		    print("Sorted intersection --> ");
-//			for (String s:sortedIntersection) 
-//				print(s + " ");
-//		}
-		
-		// Find out difference of sets set1 and intersection of set1,set2
-		
 		val restOfSet1 = Sets.symmetricDifference(set1, intersection);
 		
 		// Sort it
@@ -71,15 +63,6 @@ object FuzzyWuzzy {
 		val restOfSet2 = Sets.symmetricDifference(set2, intersection);
 		val sortedRestOfSet2 = Sets.newTreeSet(restOfSet2);
 		
-//		if (debug) {
-//		print("\nSorted rest of 1 --> ");
-//		for (String s:sortedRestOfSet1) 
-//			print(s + " ");
-//		
-//		print("\nSorted rest of 2 -->");
-//		for (String s:sortedRestOfSet2) 
-//			print(s + " ");
-//		}
 		
 		var t0 = "";
 		var t1 = "";

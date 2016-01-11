@@ -5,7 +5,7 @@ import com.prettymatch.stringmetric._
 case object LevenshteinMetric extends StringMetric[Double] {
 	def compare(a: Array[Char], b: Array[Char]): Option[Double] =
 		if (a.length == 0 || b.length == 0) None
-		else if (a.sameElements(b)) Some(0)
+		else if (a.sameElements(b)) Some(1)
 		else Some(levenshteinByPercentage(a, b))
 
 	override def compare(a: String, b: String): Option[Double] = compare(a.toCharArray, b.toCharArray)

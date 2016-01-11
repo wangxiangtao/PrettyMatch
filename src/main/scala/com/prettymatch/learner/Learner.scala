@@ -1,16 +1,19 @@
 package com.prettymatch.learner
 
 import java.io.BufferedReader
-import weka.classifiers.functions.SMO
-import weka.core.Instances
-import weka.core.SparseInstance
-import weka.classifiers.Evaluation
 import java.io.File
+import java.io.FileReader
+import java.io.FileWriter
+import java.io.PrintWriter
+import scala.collection.JavaConversions._
+import scala.collection.mutable.LinkedHashMap
 import weka.classifiers.Classifier
+import weka.classifiers.Evaluation
 import weka.core.Attribute
 import weka.core.Instance
-import java.io.FileReader
-import weka.core.Debug.Random
+import weka.core.Instances
+import weka.core.SparseInstance
+import java.util.Random
 
 case class TrainedModel(
     cl: Classifier, 
@@ -35,29 +38,49 @@ class Learner (arffIn: String = null, modelPath: String){
   }
   
   
-  def buildInstance(input: (List[String],String,String) , model: TrainedModel) = {
-	    val inst = new SparseInstance(model.vo.size)
-        (input._1.groupBy ( t => t) mapValues ( t => {
-             (((t.toString.split("--", -1).length.toFloat-1.toFloat)/2.toFloat+1)/5.toFloat).toString
-        })).foreach(keyVal => {
-          val index = invertVocab.get(keyVal._1).getOrElse(-1)
-          if(index != -1){
-        	  inst.setValue(index, keyVal._2.toDouble)
-          }
-        })
-	    inst.setDataset(model.in)
-	    inst
+  def predict(feature : LinkedHashMap[String,String]): Double = {
+    if( trainedModel.isInstanceOf[TrainedModel]) {
+        val inst = buildInstance(feature, trainedModel)
+	    val pdist = trainedModel.cl.distributionForInstance(inst)
+//	    println(pdist.toList)
+	    pdist.zipWithIndex.maxBy(_._1)._2  // _1 is e, _2 is index,  so will return index 
+    }
+    else return -1
+  }
+  
+   def predictWithProbaility(feature : LinkedHashMap[String,String]): Double = {
+    if( trainedModel.isInstanceOf[TrainedModel]) {
+        val inst = buildInstance(feature, trainedModel)
+	    val pdist = trainedModel.cl.distributionForInstance(inst)
+	    pdist.toList(1)
+    }
+    else return -1
+  }
+   
+  def buildInstance(feature : LinkedHashMap[String,String], model: TrainedModel): Instance = {
+    val inst = new SparseInstance(model.vo.size)
+    model.vo.foreach{ case(index,word) => {
+//       println(word+"-"+feature.getOrElse(word, "0"))
+       inst.setValue(index, feature.getOrElse(word, "0").toDouble)
+    }}  
+    inst.setDataset(model.in)
+    inst
   }
   
   def evaluate = {
     val eval = new Evaluation(reader)
-	eval.crossValidateModel(currentModel, reader, 10, new Random(1))
- 	println("------Confusion Matric------\n")
-	println("           TP      FP")
-	print("Unique     "+eval.confusionMatrix()(0)(0)+"  ")
-	println(eval.confusionMatrix()(0)(1))
-	print("Duplicated "+eval.confusionMatrix()(1)(1)+"  ")
-	println(eval.confusionMatrix()(1)(0))
+  	eval.crossValidateModel(currentModel, reader, 10, new Random(1))
+   	println("------Confusion Matric------\n")
+  	println("           TP      FP")
+  	print("Unique     "+eval.confusionMatrix()(0)(0)+"  ")
+  	println(eval.confusionMatrix()(0)(1))
+  	print("Duplicated "+eval.confusionMatrix()(1)(1)+"  ")
+  	println(eval.confusionMatrix()(1)(0))
+     val writer = new PrintWriter(new FileWriter(new File("Evaluation.model")))
+      writer.println(eval.precision(1))
+       writer.println(eval.recall(1))
+    writer.println(eval.toClassDetailsString)
+     writer.close()
   }
   
   def readModel(path: String) = {
@@ -70,7 +93,9 @@ class Learner (arffIn: String = null, modelPath: String){
         }
     }
   }
-  
+  def saveModel(model: TrainedModel) = {
+    weka.core.SerializationHelper.write(modelPath, model)
+  }
   def reader = {
     val reader = new BufferedReader(new FileReader(new File(arffIn)))
     val _instances = new Instances(reader)
